@@ -13,5 +13,5 @@ void setupServices() {
   sl.registerSingleton<ApiService>(ApiServiceImpl());
   sl.registerSingleton<FetchFromRemoteDS>(FetchFromRemoteDSImpl());
   sl.registerSingleton<FetchRepo>(FetchRepoImpl());
-  sl.registerSingleton<FetchNewsUsecase>(FetchNewsUsecase());
+  sl.registerSingleton<FetchNewsUsecase>(FetchNewsUsecase(sl()));
 }
