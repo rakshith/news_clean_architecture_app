@@ -9,15 +9,15 @@ import 'package:news_clean_arch_app/features/show_news/domain/usecases/fetch_new
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
-  NewsCubit() : super(NewsInitial(articles: const []));
-
-  final FetchNewsUsecase _fetchNewsUsecase = sl<FetchNewsUsecase>();
+  // final FetchNewsUsecase _fetchNewsUsecase = sl<FetchNewsUsecase>();
+  final FetchNewsUsecase fetchNewsUsecase;
+  NewsCubit(this.fetchNewsUsecase) : super(NewsInitial(articles: const []));
 
   void fetchNews(String? searchText) async {
     emit(NewsLoading());
 
     final Either<Failure, List<Articles>> fetchNewsResult =
-        await _fetchNewsUsecase.fetchNews(searchText);
+        await fetchNewsUsecase.fetchNews(searchText);
 
     fetchNewsResult.fold(
         (l) => {emit(NewsError())},

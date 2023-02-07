@@ -11,7 +11,8 @@ final GetIt sl = GetIt.instance;
 void setupServices() {
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<ApiService>(ApiServiceImpl());
-  sl.registerSingleton<FetchFromRemoteDS>(FetchFromRemoteDSImpl());
-  sl.registerSingleton<FetchRepo>(FetchRepoImpl());
+  sl.registerSingleton<FetchFromRemoteDS>(
+      FetchFromRemoteDSImpl(apiService: sl()));
+  sl.registerSingleton<FetchRepo>(FetchRepoImpl(sl()));
   sl.registerSingleton<FetchNewsUsecase>(FetchNewsUsecase(sl()));
 }

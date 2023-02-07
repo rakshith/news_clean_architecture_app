@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:news_clean_arch_app/core/constants/const.dart';
 import 'package:news_clean_arch_app/core/failures_successes/exceptions.dart';
 import 'package:news_clean_arch_app/core/services/api_service.dart';
@@ -9,7 +10,10 @@ abstract class FetchFromRemoteDS {
 }
 
 class FetchFromRemoteDSImpl implements FetchFromRemoteDS {
-  final ApiService apiService = sl<ApiService>();
+  // final ApiService apiService = sl<ApiService>();
+  final ApiService apiService;
+
+  FetchFromRemoteDSImpl({required this.apiService});
 
   @override
   Future<List<ArticlesModel>> fetchNews(String? searchText) async {
@@ -41,6 +45,7 @@ class FetchFromRemoteDSImpl implements FetchFromRemoteDS {
 
       return articles;
     } catch (e) {
+      print('error: ${e.toString()}');
       throw const FetchException(message: 'Failed to get data');
     }
   }
